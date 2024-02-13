@@ -8,6 +8,14 @@
 
 config_version=5
 
+[addons]
+
+rakugo/game_version="1.0.0"
+rakugo/history_length=30
+rakugo/narrator/name="narrator"
+rakugo/debug=false
+rakugo/save_folder="user://saves"
+
 [application]
 
 config/name="JAM_DOORS"
@@ -15,9 +23,21 @@ run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Rakugo="*res://addons/Rakugo/Rakugo.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor]
+
+script/search_in_file_extensions=PackedStringArray("gd", "gdshader", "rk")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Rakugo/plugin.cfg")
 
 [rendering]
 
