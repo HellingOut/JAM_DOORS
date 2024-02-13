@@ -12,7 +12,7 @@ offset_right = 2455.0
 offset_bottom = 857.0
 color = Color(0, 0, 0, 1)
 
-[node name="Hint0" type="Sprite2D" parent="."]
+[node name="Hint" type="Sprite2D" parent="."]
 position = Vector2(16, 8)
 texture = ExtResource("1_cvf1w")
 

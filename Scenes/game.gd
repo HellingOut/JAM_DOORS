@@ -6,12 +6,20 @@ extends Node2D
 @onready var camera = $Camera
 @onready var textbox = $CanvasLayer/Textbox
 @onready var textbox_text = $CanvasLayer/Textbox/Text
+@onready var choice_1 = $Choice1
+@onready var choice_2 = $Choice2
+@onready var choice_3 = $Choice3
+@onready var choice_4 = $Choice4
 
 const file_path = "res://Timeline.rk"
 
 var current_question = 0
 
 var hint:Node2D
+
+var right_answers = [
+	1, 2, 3, 4, 3, 4, 2, 1
+]
 
 func _ready():
 	animations.play("appearance")
@@ -45,3 +53,24 @@ func _on_animations_animation_finished(_anim_name):
 		animations.play("appearance")
 	if(textbox.visible == true):
 		translation.visible = true
+
+func _on_choice_1_pressed():
+	if(right_answers[current_question] == 1):
+		choice_2.hide()
+		choice_3.hide()
+		choice_4.hide()
+func _on_choice_2_pressed():
+	if(right_answers[current_question] == 2):
+		choice_1.hide()
+		choice_3.hide()
+		choice_4.hide()
+func _on_choice_3_pressed():
+	if(right_answers[current_question] == 3):
+		choice_2.hide()
+		choice_1.hide()
+		choice_4.hide()
+func _on_choice_4_pressed():
+	if(right_answers[current_question] == 4):
+		choice_2.hide()
+		choice_3.hide()
+		choice_1.hide()
