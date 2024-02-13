@@ -26,6 +26,7 @@ func _on_step():
 	prints("Press 'Enter' to continue...")
 
 func _on_execute_script_finished(_script_name:String, _error_str:String):
+	translation.visible = false
 	textbox.hide()
 
 func _process(_delta):
