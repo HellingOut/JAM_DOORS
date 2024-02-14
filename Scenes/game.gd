@@ -5,7 +5,7 @@ extends Node2D
 
 var current_question = 0
 
-var hint:Node2D
+var hint
 
 func _ready():
 	pass
