@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bni47lym7q5ns"]
+[gd_scene load_steps=18 format=3 uid="uid://bni47lym7q5ns"]
 
 [ext_resource type="Texture2D" uid="uid://b0ludfkpyvfru" path="res://Sprites/Scene.png" id="1_a5gwe"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_tix36"]
 [ext_resource type="Texture2D" uid="uid://cjdd3kdx14rrn" path="res://Sprites/door_main.png" id="2_krbaw"]
+[ext_resource type="Texture2D" uid="uid://b5vg3gcldulex" path="res://Sprites/rope.png" id="4_1kcw8"]
+[ext_resource type="FontFile" uid="uid://5kf347wgwona" path="res://planetbe.ttf" id="4_dq044"]
+[ext_resource type="StyleBox" uid="uid://cuj1hq0erdwbu" path="res://Scenes/buttom_theme.stylebox" id="6_ki8sh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmnml"]
 
@@ -16,7 +19,6 @@
 
 [sub_resource type="Animation" id="Animation_go7oe"]
 resource_name = "appearance"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,7 +26,7 @@ tracks/0/path = NodePath("CanvasLayer/Translation:color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.75, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
@@ -36,7 +38,7 @@ tracks/1/path = NodePath("CanvasLayer/Translation:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -94,9 +96,43 @@ tracks/3/keys = {
 "values": [Vector2(0, 0), Vector2(85, 140)]
 }
 
+[sub_resource type="Animation" id="Animation_he406"]
+resource_name = "create_buttons"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1.5, 0.5, 0.75),
+"update": 0,
+"values": [Vector2(0, -1000), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3khk4"]
+resource_name = "remove_buttons"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1.5, 1.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -1000)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_40qim"]
 _data = {
 "appearance": SubResource("Animation_go7oe"),
+"create_buttons": SubResource("Animation_he406"),
+"remove_buttons": SubResource("Animation_3khk4"),
 "to_door": SubResource("Animation_yd3w8")
 }
 
@@ -138,6 +174,101 @@ libraries = {
 "": SubResource("AnimationLibrary_40qim")
 }
 
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2(0, -1000)
+
+[node name="Rope" type="Sprite2D" parent="Buttons"]
+position = Vector2(-627.5, -278.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope2" type="Sprite2D" parent="Buttons"]
+position = Vector2(-489.5, -290.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope3" type="Sprite2D" parent="Buttons"]
+position = Vector2(-546.5, -452.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope4" type="Sprite2D" parent="Buttons"]
+position = Vector2(-408.5, -432.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope5" type="Sprite2D" parent="Buttons"]
+position = Vector2(368.5, -452.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope6" type="Sprite2D" parent="Buttons"]
+position = Vector2(513.5, -432.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope7" type="Sprite2D" parent="Buttons"]
+position = Vector2(474.5, -274.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Rope8" type="Sprite2D" parent="Buttons"]
+position = Vector2(616.5, -277.5)
+texture = ExtResource("4_1kcw8")
+
+[node name="Choice1" type="Button" parent="Buttons"]
+offset_left = -610.5
+offset_top = -202.5
+offset_right = -321.5
+offset_bottom = -69.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dq044")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = ExtResource("6_ki8sh")
+theme_override_styles/hover = ExtResource("6_ki8sh")
+theme_override_styles/pressed = ExtResource("6_ki8sh")
+theme_override_styles/disabled = ExtResource("6_ki8sh")
+theme_override_styles/focus = ExtResource("6_ki8sh")
+text = "Choice 1"
+
+[node name="Choice2" type="Button" parent="Buttons"]
+offset_left = 307.5
+offset_top = -183.5
+offset_right = 596.5
+offset_bottom = -50.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dq044")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = ExtResource("6_ki8sh")
+theme_override_styles/hover = ExtResource("6_ki8sh")
+theme_override_styles/pressed = ExtResource("6_ki8sh")
+theme_override_styles/disabled = ExtResource("6_ki8sh")
+theme_override_styles/focus = ExtResource("6_ki8sh")
+text = "Choice 2"
+
+[node name="Choice3" type="Button" parent="Buttons"]
+offset_left = -691.5
+offset_top = -44.5
+offset_right = -402.5
+offset_bottom = 88.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dq044")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = ExtResource("6_ki8sh")
+theme_override_styles/hover = ExtResource("6_ki8sh")
+theme_override_styles/pressed = ExtResource("6_ki8sh")
+theme_override_styles/disabled = ExtResource("6_ki8sh")
+theme_override_styles/focus = ExtResource("6_ki8sh")
+text = "Choice 3"
+
+[node name="Choice4" type="Button" parent="Buttons"]
+offset_left = 410.5
+offset_top = -14.5
+offset_right = 702.5
+offset_bottom = 118.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_dq044")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = ExtResource("6_ki8sh")
+theme_override_styles/hover = ExtResource("6_ki8sh")
+theme_override_styles/pressed = ExtResource("6_ki8sh")
+theme_override_styles/disabled = ExtResource("6_ki8sh")
+theme_override_styles/focus = ExtResource("6_ki8sh")
+text = "Choice 4"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Textbox" type="Panel" parent="CanvasLayer"]
@@ -166,6 +297,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="Translation" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -174,37 +306,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Choice1" type="Button" parent="."]
-offset_left = -547.0
-offset_top = -208.0
-offset_right = -258.0
-offset_bottom = -79.0
-text = "Choice 1"
-
-[node name="Choice2" type="Button" parent="."]
-offset_left = 219.0
-offset_top = -206.0
-offset_right = 508.0
-offset_bottom = -77.0
-text = "Choice 2"
-
-[node name="Choice3" type="Button" parent="."]
-offset_left = -537.0
-offset_top = 15.0
-offset_right = -248.0
-offset_bottom = 144.0
-text = "Choice 3"
-
-[node name="Choice4" type="Button" parent="."]
-offset_left = 220.0
-offset_top = 15.0
-offset_right = 509.0
-offset_bottom = 144.0
-text = "Choice 4"
-
 [connection signal="pressed" from="Door" to="." method="_on_door_pressed"]
 [connection signal="animation_finished" from="Animations" to="." method="_on_animations_animation_finished"]
-[connection signal="pressed" from="Choice1" to="." method="_on_choice_1_pressed"]
-[connection signal="pressed" from="Choice2" to="." method="_on_choice_2_pressed"]
-[connection signal="pressed" from="Choice3" to="." method="_on_choice_3_pressed"]
-[connection signal="pressed" from="Choice4" to="." method="_on_choice_4_pressed"]
+[connection signal="pressed" from="Buttons/Choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="Buttons/Choice2" to="." method="_on_choice_2_pressed"]
+[connection signal="pressed" from="Buttons/Choice3" to="." method="_on_choice_3_pressed"]
+[connection signal="pressed" from="Buttons/Choice4" to="." method="_on_choice_4_pressed"]

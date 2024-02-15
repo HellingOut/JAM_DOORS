@@ -62,7 +62,7 @@ z_index = -10
 z_as_relative = false
 motion_scale = Vector2(3.275, 3.275)
 
-[node name="Hint0" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+[node name="Hint" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(16, 8)
 texture = ExtResource("1_cvf1w")
 

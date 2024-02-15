@@ -1,4 +1,3 @@
-"Hello"
-play_animation(appearance)
-"Second"
-"3rd"
+"Dialog ID = 6"
+play_animation(create_buttons)
+"End_of_dialog"

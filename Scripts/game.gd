@@ -6,10 +6,10 @@ extends Node2D
 @onready var camera = $Camera
 @onready var textbox = $CanvasLayer/Textbox
 @onready var textbox_text = $CanvasLayer/Textbox/Text
-@onready var choice_1 = $Choice1
-@onready var choice_2 = $Choice2
-@onready var choice_3 = $Choice3
-@onready var choice_4 = $Choice4
+@onready var choice_1 = $Buttons/Choice1
+@onready var choice_2 = $Buttons/Choice2
+@onready var choice_3 = $Buttons/Choice3
+@onready var choice_4 = $Buttons/Choice4
 
 const first_dialog = "res://Timeline.rk"
 
@@ -22,11 +22,11 @@ var current_question = 0
 var hint
 
 var right_answers:Array = [
-	1, 2, 3, 4, 3, 4, 2, 1
+	2, 2, 3, 4, 3, 4, 2, 1
 ]
 
 var variant_text:Array = [
-	["Variant 1", "Variant 2", "Variant 3", "Variant 4"],
+	["Cat", "Pikachu", "Lamp", "idk lol"],
 	["Q2Variant 1", "Q2Variant 2", "Q2Variant 3", "Q2Variant 4"],
 	["Q3Variant 1", "Variant 2", "Variant 3", "Variant 4"],
 	["Variant 1", "Q3Variant 2", "Variant 3", "Variant 4"],
@@ -82,13 +82,16 @@ func _process(_delta):
 func _on_door_pressed():
 	animations.play("to_door")
 
-func _on_animations_animation_finished(_anim_name):
-	if(_anim_name == "to_door"):
-		camera.zoom = Vector2(0.6, 0.6)
-		camera.position = Vector2()
-		hint = preload("res://Scenes/hint.tscn").instantiate()
-		get_tree().root.add_child(hint)
-		animations.play("appearance")
+func _on_animations_animation_finished(anim_name):
+	match(anim_name):
+		"to_door":
+			camera.zoom = Vector2(0.6, 0.6)
+			camera.position = Vector2()
+			hint = preload("res://Scenes/hint.tscn").instantiate()
+			get_tree().root.add_child(hint)
+			animations.play("appearance")
+		"remove_buttoms":
+			next_question()
 	if(textbox.visible == true):
 		translation.visible = true
 
@@ -99,30 +102,22 @@ func next_question():
 	choice_3.text = variant_text[current_question][2]
 	choice_4.text = variant_text[current_question][3]
 
+func check_question(variant):
+	if(right_answers[current_question] == variant):
+		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
+	else:
+		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
+	animations.play("remove_buttons")
+
+
 func _on_choice_1_pressed():
-	if(right_answers[current_question] == 1):
-		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
-	else:
-		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
-	next_question()
+	check_question(1)
 func _on_choice_2_pressed():
-	if(right_answers[current_question] == 2):
-		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
-	else:
-		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
-	next_question()
+	check_question(2)
 func _on_choice_3_pressed():
-	if(right_answers[current_question] == 3):
-		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
-	else:
-		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
-	next_question()
+	check_question(3)
 func _on_choice_4_pressed():
-	if(right_answers[current_question] == 4):
-		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
-	else:
-		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
-	next_question()
+	check_question(4)
 
 func play_animation(args:Array):
 	animations.play(args[0])
