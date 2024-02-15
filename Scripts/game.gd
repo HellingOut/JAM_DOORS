@@ -47,6 +47,7 @@ func _ready():
 
 func start_dialog(script):
 	textbox.show()
+	translation.show()
 	Rakugo.parse_and_execute_script(script)
 
 func _on_say(_character:Dictionary, text:String):
@@ -71,7 +72,7 @@ func _on_custom_regex(key:String, result):
 	functions[key].call(args)
 
 func _on_execute_script_finished(_script_name:String, _error_str:String):
-	translation.visible = false
+	translation.hide()
 	textbox.hide()
 
 func _process(_delta):
@@ -106,15 +107,21 @@ func _on_choice_1_pressed():
 	next_question()
 func _on_choice_2_pressed():
 	if(right_answers[current_question] == 2):
-		print(right_answers[current_question])
+		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
+	else:
+		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
 	next_question()
 func _on_choice_3_pressed():
 	if(right_answers[current_question] == 3):
-		print(right_answers[current_question])
+		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
+	else:
+		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
 	next_question()
 func _on_choice_4_pressed():
 	if(right_answers[current_question] == 4):
-		print(right_answers[current_question])
+		start_dialog("res://Dialogs/Right/dialog_" + str(current_question) + ".rk")
+	else:
+		start_dialog("res://Dialogs/Wrong/dialog_" + str(current_question) + ".rk")
 	next_question()
 
 func play_animation(args:Array):
