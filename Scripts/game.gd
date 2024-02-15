@@ -15,7 +15,7 @@ const file_path = "res://Timeline.rk"
 
 var current_question = 0
 
-var hint:Node2D
+var hint
 
 var right_answers = [
 	1, 2, 3, 4, 3, 4, 2, 1
@@ -49,7 +49,7 @@ func _on_animations_animation_finished(_anim_name):
 		camera.zoom = Vector2(0.6, 0.6)
 		camera.position = Vector2()
 		hint = preload("res://Scenes/hint.tscn").instantiate()
-		add_child(hint)
+		get_tree().root.add_child(hint)
 		animations.play("appearance")
 	if(textbox.visible == true):
 		translation.visible = true

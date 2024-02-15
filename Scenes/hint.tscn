@@ -1,40 +1,76 @@
 [gd_scene load_steps=4 format=3 uid="uid://t612p1sj0trc"]
 
+[ext_resource type="Script" path="res://Scripts/background.gd" id="1_7ktmg"]
 [ext_resource type="Texture2D" uid="uid://du30fh8balsj8" path="res://Sprites/Hints/hint_0.png" id="1_cvf1w"]
-[ext_resource type="Script" path="res://Scripts/hint.gd" id="1_w5mfh"]
 [ext_resource type="Texture2D" uid="uid://cmxivorta18fn" path="res://Sprites/hole.png" id="1_y4hvq"]
 
-[node name="Hint" type="Node2D"]
-script = ExtResource("1_w5mfh")
+[node name="Hint" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -2335.0
-offset_top = -1074.0
-offset_right = 2455.0
-offset_bottom = 857.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+top_level = true
+z_index = 4096
+z_as_relative = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -257.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Back"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 100
+scroll_base_scale = Vector2(0.015, 0.015)
+script = ExtResource("1_7ktmg")
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2910.0
+offset_top = -1610.0
+offset_right = 1346.0
+offset_bottom = 938.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.466667)
+
+[node name="ColorRect3" type="ColorRect" parent="ParallaxBackground"]
+z_index = -80
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2910.0
+offset_top = -1610.0
+offset_right = 1346.0
+offset_bottom = 938.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Hint" type="Sprite2D" parent="."]
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -10
+z_as_relative = false
+motion_scale = Vector2(3.275, 3.275)
+
+[node name="Hint0" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(16, 8)
 texture = ExtResource("1_cvf1w")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -747.0
-offset_top = -510.0
-offset_right = 771.0
-offset_bottom = 462.0
-color = Color(0, 0, 0, 0.466667)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = 100
+z_as_relative = false
 
-[node name="Hole" type="Sprite2D" parent="."]
+[node name="Hole" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("1_y4hvq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 910.0
-offset_top = 21.0
-offset_right = 1131.0
-offset_bottom = 76.0
-text = "Back"
-
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="ParallaxBackground" method="_on_button_pressed"]
