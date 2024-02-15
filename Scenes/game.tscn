@@ -141,6 +141,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Textbox" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -171,7 +172,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Choice1" type="Button" parent="."]
