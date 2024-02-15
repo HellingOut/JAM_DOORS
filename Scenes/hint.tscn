@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://t612p1sj0trc"]
+[gd_scene load_steps=4 format=3 uid="uid://t612p1sj0trc"]
 
 [ext_resource type="Texture2D" uid="uid://du30fh8balsj8" path="res://Sprites/Hints/hint_0.png" id="1_cvf1w"]
+[ext_resource type="Script" path="res://Scripts/hint.gd" id="1_w5mfh"]
 [ext_resource type="Texture2D" uid="uid://cmxivorta18fn" path="res://Sprites/hole.png" id="1_y4hvq"]
 
 [node name="Hint" type="Node2D"]
+script = ExtResource("1_w5mfh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -2335.0
@@ -25,3 +27,14 @@ color = Color(0, 0, 0, 0.466667)
 
 [node name="Hole" type="Sprite2D" parent="."]
 texture = ExtResource("1_y4hvq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 910.0
+offset_top = 21.0
+offset_right = 1131.0
+offset_bottom = 76.0
+text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
