@@ -4,6 +4,8 @@ play_animation(fade)
 "Here comes an old friend of ours! Gentlemen, I give you "The Door"!"
 play_animation(slight_approach)
 "For those who are new here or those who are here today for the first time I'll remind you of the rules...."
+play_animation(create_buttons)
 "There are answer sheets in front of you! If you look through the keyhole, you can see a silhouette! Your task is to choose the answer with the name of that silhouette."
 "And what's at stake here."
+
 "One year's supply of toilet paper"
