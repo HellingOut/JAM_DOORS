@@ -10,6 +10,7 @@ extends Node2D
 @onready var choice_2 = $Buttons/Choice2
 @onready var choice_3 = $Buttons/Choice3
 @onready var choice_4 = $Buttons/Choice4
+@onready var curtain = $Curtain
 
 const first_dialog = "res://Timeline.rk"
 
@@ -92,6 +93,11 @@ func _on_animations_animation_finished(anim_name):
 			animations.play("appearance")
 		"remove_buttoms":
 			next_question()
+		"fade":
+			animations.play("appearance")
+			door.show()
+			curtain.show()
+			Rakugo.do_step()
 	if(textbox.visible == true):
 		translation.visible = true
 
